@@ -33,8 +33,10 @@
 #define lua_pushglobaltable(L) \
   lua_pushvalue(L, LUA_GLOBALSINDEX)
 
+#ifndef luaL_newlib // warning on luajit
 #define luaL_newlib(L, l) \
   (lua_newtable((L)),luaL_setfuncs((L), (l), 0))
+#endif
 
 void luaL_checkversion(lua_State *L);
 

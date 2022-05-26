@@ -32,6 +32,15 @@
 #include <string.h>
 #include <stdio.h>
 
+#if !defined(LUA_ERRGCMM)
+#  define LUA_ERRGCMM (LUA_ERRERR + 2)
+#endif /* LUA_ERRGCMM define */
+
+#define lua_callk(L, na, nr, ctx, cont) \
+  ((void)(ctx), (void)(cont), lua_call((L), (na), (nr)))
+#define lua_pcallk(L, na, nr, err, ctx, cont) \
+  ((void)(ctx), (void)(cont), lua_pcall((L), (na), (nr), (err)))
+
 /* LuaJIT doesn't define these unofficial macros ... */
 #if !defined(LUAI_INT32)
 #include <limits.h>

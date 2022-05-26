@@ -61,6 +61,10 @@ Visual Studio 2013 with the November CTP could possibly compile it, despite not 
 version that Visual Studio 2013 was supported was on tag v1.1.0. Anything after that is wishful thinking. In order to
 retrieve that tagged version, just do `git checkout v1.1.0`.
 
+## Test it
+
+`clang++ tests.cpp -I. -I/usr/local/include/luajit-2.1 -ICatch/include -std=c++11 -L/usr/local/lib -lluajit-5.1`
+
 ## Caveats
 
 Due to how this library is used compared to the C API, the Lua Stack is completely abstracted away. Not only that, but all

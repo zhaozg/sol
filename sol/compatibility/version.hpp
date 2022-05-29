@@ -22,11 +22,18 @@
 #ifndef SOL_VERSION_HPP
 #define SOL_VERSION_HPP
 
-#include <lua.hpp>
+extern "C" {
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+}
 
 #ifdef LUAJIT_VERSION
 #ifndef SOL_LUAJIT
 #define SOL_LUAJIT
+extern "C" {
+#include "luajit.h"
+}
 #endif // sol luajit
 #endif // luajit
 
@@ -40,6 +47,6 @@
 #else
 // ??? Not sure, assume 502?
 #define SOL_LUA_VERSION 502
-#endif // Lua Version 502, 501 || luajit, 500 
+#endif // Lua Version 502, 501 || luajit, 500
 
 #endif // SOL_VERSION_HPP

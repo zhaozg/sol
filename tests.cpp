@@ -497,7 +497,7 @@ TEST_CASE("functions/deducing_return_order_and_multi_get", "Check if return orde
     sol::state lua;
     lua.set_function( "f_string", []() { return "this is a string!"; } );
     sol::function f_string = lua[ "f_string" ];
-    
+
     // Make sure there are no overload collisions / compiler errors for automatic string conversions
     std::string f_string_result = f_string();
     REQUIRE(f_string_result == "this is a string!");
@@ -1044,7 +1044,7 @@ TEST_CASE( "functions/sol::function_result", "Function result should be the beef
     REQUIRE(!result1.valid());
     std::string errorstring = result1;
     REQUIRE(errorstring == errormessage1);
-    
+
     sol::function_result result2 = luafunc();
     REQUIRE(!result2.valid());
     errorstring = result2;

@@ -54,7 +54,7 @@ private:
 public:
     function_result() = default;
     function_result(lua_State* L, int index = -1, int returncount = 0, call_error error = call_error::ok): L(L), index(index), returncount(returncount), error(error) {
-        
+
     }
     function_result(const function_result&) = default;
     function_result& operator=(const function_result&) = default;
@@ -222,7 +222,7 @@ public:
     }
 
     template<typename... Ret, typename... Args>
-    auto operator()(types<Ret...>, Args&&... args) const 
+    auto operator()(types<Ret...>, Args&&... args) const
     -> decltype(invoke(types<Ret...>(), types<Ret...>(), 0, std::declval<handler&>())) {
         return call<Ret...>(std::forward<Args>(args)...);
     }
@@ -326,7 +326,7 @@ struct pusher<function_sig_t<Sigs...>> {
 
         int upvalues = stack::detail::push_as_upvalues(L, memfxptr);
         upvalues += stack::push(L, userobjdata);
-        
+
         stack::push(L, freefunc, upvalues);
     }
 
@@ -346,7 +346,7 @@ struct pusher<function_sig_t<Sigs...>> {
         base_function* target = luafunc.release();
         void* userdata = reinterpret_cast<void*>(target);
         lua_CFunction freefunc = &base_function::call;
-       
+
         int metapushed = luaL_newmetatable(L, metatablename);
         if(metapushed == 1) {
             lua_pushstring(L, "__gc");
